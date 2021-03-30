@@ -145,6 +145,8 @@ Write data in '.pcd' file
 
 (binary)
 
+delete background, thus， the points data is unorganized
+
 ```python
 def write_points(points, fileName):
 	...
@@ -169,3 +171,14 @@ eng = matlab.engine.start_matlab()
 eng.showpc(nargout=0)
 time.sleep(10)
 ```
+# 👣Issues
+
+## Original input
+
+- origin point
+- scale
+
+## To be done
+
+- point clouds merging
+- point clouds registration
