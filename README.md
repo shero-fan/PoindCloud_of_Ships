@@ -1,10 +1,5 @@
 # PoindCloud_of_Ships
 Generate point clouds of the flow field of ships from their cross-sections which are perpendicular to x y z axis respectively.
-# README
-
-# About
-
-This code is to generate point clouds by sets of cross-sections which are perpendicular to the x,  y and z axis respetively.
 
 # Working directory
 
