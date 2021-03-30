@@ -97,7 +97,7 @@ def intrp_sec(work_path,num_intrp):
         print('END ALL INTERPOLATION ') 
 
 def set_sec():
-    scale_factorx=40
+    scale_factorx=60
     scale_factory=10
     scale_factorz=20
     secStep={'sections_x':0.57/scale_factorx,'sections_y':-0.0728/scale_factory,'sections_z':0.08545/scale_factorz}
@@ -116,7 +116,7 @@ def dump_points(points, depth, rotatedegree):###########orientation  e.g. [1,0,0
     height = points.shape[0]
     width = points.shape[1]
 
-    # setup rotation from euler angles
+    # setup rotation from rotation vector
     
     rotation_vecx=np.radians(rotatedegree['x_axis'])*np.array([1, 0, 0]) 
     rotation_vecy=np.radians(rotatedegree['y_axis'])*np.array([0, 1, 0])
@@ -124,10 +124,6 @@ def dump_points(points, depth, rotatedegree):###########orientation  e.g. [1,0,0
     rotationx= R.from_rotvec(rotation_vecx)
     rotationy= R.from_rotvec(rotation_vecy)
     rotationz= R.from_rotvec(rotation_vecz)
-    #rotation= R.from_euler('zyx', [
-    #np.array([0, 0, rotatedegree['z_axis']]),
-    #np.array([0, rotatedegree['y_axis'], 0]),
-    #np.array([rotatedegree['x_axis'], 0, 0])], degrees=True)
 
     # write out the points
     for row in range(0, height):
@@ -200,25 +196,6 @@ def generate_pc(initial_d,sec_step,num_intrp,work_path):
         print("End generate point cloud of ",inputSec)
     print("Total points of the point cloud is",totalpoint)
     print("END ALL Point Cloud Generation")
-
-def show_pc(m4,name):
-    #列表解析x,y,z的坐标
-    x=[k[0] for k in m4]
-    y=[k[1] for k in m4]
-    z=[k[2] for k in m4]
-    #开始绘图
-    fig=plt.figure(dpi=120)
-    ax=fig.add_subplot(111,projection='3d')
-    #标题
-    plt.title(name)
-    #利用xyz的值，生成每个点的相应坐标（x,y,z）
-    ax.scatter(x,y,z,c='b',marker='.',s=2,linewidth=0,alpha=1,cmap=plt.cm.jet)
-    ax.axis('scaled')          
-    ax.set_xlabel('X Label')
-    ax.set_ylabel('Y Label')
-    ax.set_zlabel('Z Label')
-    #显示
-    plt.show()
     
 def show_mlb():
         eng = matlab.engine.start_matlab()
@@ -226,10 +203,10 @@ def show_mlb():
         time.sleep(10)
         
 def main():
-    #secStep,initialDepth=set_sec()
-    #Nums_intrp=set_intrp(1,2,1)
-    #intrp_sec(Currentwork_path,Nums_intrp)
-    #generate_pc(initialDepth,secStep,Nums_intrp,Currentwork_path)
+    secStep,initialDepth=set_sec()
+    Nums_intrp=set_intrp(1,2,1)
+    intrp_sec(Currentwork_path,Nums_intrp)
+    generate_pc(initialDepth,secStep,Nums_intrp,Currentwork_path)
     show_mlb()
     
     
