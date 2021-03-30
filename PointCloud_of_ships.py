@@ -11,6 +11,7 @@ import errno
 from scipy.spatial.transform import Rotation as R
 import scipy.ndimage
 import matlab.engine
+import time
 
 Currentwork_path=os.getcwd()
 print("Current Work path is ",Currentwork_path)
@@ -222,12 +223,13 @@ def show_pc(m4,name):
 def show_mlb():
         eng = matlab.engine.start_matlab()
         eng.showpc(nargout=0)
+        time.sleep(10)
         
 def main():
-    secStep,initialDepth=set_sec()
-    Nums_intrp=set_intrp(1,2,1)
+    #secStep,initialDepth=set_sec()
+    #Nums_intrp=set_intrp(1,2,1)
     #intrp_sec(Currentwork_path,Nums_intrp)
-    generate_pc(initialDepth,secStep,Nums_intrp,Currentwork_path)
+    #generate_pc(initialDepth,secStep,Nums_intrp,Currentwork_path)
     show_mlb()
     
     
