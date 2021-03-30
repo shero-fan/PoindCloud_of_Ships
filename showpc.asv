@@ -1,0 +1,12 @@
+
+ptCloud_x = pcread('.\Output_Pc\section_x.pcd');
+ptCloud_y = pcread('.\Output_Pc\section_y.pcd');
+ptCloud_z = pcread('.\Output_Pc\section_z.pcd');
+
+figure
+pcshow(ptCloud_x);
+hold on
+pcshow(ptCloud_y);
+hold on
+pcshow(ptCloud_z);
+title('Point Cloud Data');
